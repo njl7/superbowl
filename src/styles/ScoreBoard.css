@@ -1,0 +1,319 @@
+.scoreboard-container {
+  background-color: #8B4513; /* Brown background */
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  color: #FFF8DC; /* Cream text */
+  width: 100%;
+  border: 3px solid #D2691E; /* Chocolate border */
+  overflow-x: auto; /* Allow horizontal scrolling if needed */
+  white-space: nowrap; /* Prevent content wrapping */
+  position: relative; /* For proper scrolling context */
+}
+
+.header-with-pins {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.player-name {
+  text-align: center;
+  color: #FFD700; /* Gold color for player name */
+  font-size: 28px;
+  margin: 0 20px;
+  text-shadow: 1px 1px 3px #5D2906;
+}
+
+.header-pin {
+  position: relative;
+  top: -5px;
+}
+
+.header-pin.left {
+  transform: rotate(-15deg);
+}
+
+.header-pin.right {
+  transform: rotate(15deg);
+}
+
+.frames-container {
+  display: flex;
+  flex-wrap: nowrap; /* Prevent wrapping to keep all frames in a single row */
+  gap: 15px; /* Increased gap from 10px to 15px for better spacing */
+  justify-content: flex-start; /* Changed from center to allow proper scrolling */
+  margin-bottom: 20px;
+  min-width: max-content; /* Ensure container is as wide as needed for all frames */
+  overflow-x: auto; /* Enable horizontal scrolling on smaller screens */
+  padding-bottom: 10px; /* Add padding for scrollbar */
+  position: relative; /* For proper scrolling context */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.frames-container::-webkit-scrollbar {
+  display: none;
+}
+
+.frame {
+  background-color: #A0522D; /* Sienna background for frames */
+  border-radius: 8px;
+  padding: 12px;
+  min-width: 100px; /* Increased from 80px */
+  width: 100px; /* Increased from 80px */
+  flex: 0 0 auto; /* Don't allow frames to grow or shrink */
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+  border: 3px solid #D2691E; /* Increased border from 2px to 3px and kept Chocolate color */
+  position: relative; /* Added to ensure proper border display */
+  z-index: 1; /* Added to ensure borders are visible */
+}
+
+.current-frame {
+  border: 3px solid #FFD700; /* Increased border from 2px to 3px for current frame */
+  transform: scale(1.05);
+  z-index: 2; /* Ensure current frame appears above others */
+  margin: 3px; /* Add margin to prevent border from being cut off */
+  transform-origin: center; /* Ensure scaling happens from center */
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); /* Add glow effect to highlight current frame */
+}
+
+.frame-header {
+  background-color: #5D2906; /* Dark brown */
+  border-radius: 4px;
+  padding: 5px;
+  text-align: center;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #FFD700; /* Gold */;
+  font-size: 13px; /* Increased font size for better visibility */
+}
+
+.rolls-container {
+  display: flex;
+  justify-content: space-between; /* Changed from space-around to space-between */
+  margin-bottom: 10px;
+  gap: 5px; /* Reverted back to original value of 20px */
+  padding: 0 0px; /* Added padding to prevent circles from touching edges */
+}
+
+.roll {
+  width: 38px; /* Restored from 34px to original 38px */
+  height: 38px; /* Restored from 34px to original 38px */
+  border-radius: 50%;
+  background-color: #FFFFFF; /* White for regular rolls */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px; /* Restored original font size */
+  box-sizing: border-box;
+  color: #5D2906; /* Dark brown text */
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  border: 1px solid #5D2906;
+}
+
+.roll.empty {
+  background-color: #D2B48C; /* Tan color for empty */
+  border: 1px dashed #8B4513;
+}
+
+.roll.strike {
+  background-color: #FFD700; /* Gold for strikes */
+  color: #FF0000;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.roll.spare {
+  background-color: #FFD700; /* Gold for spares */
+  color: #FF0000;
+  border: none;
+}
+
+.roll.miss {
+  background-color: #8B0000; /* Dark red for misses */
+  color: white;
+}
+
+.roll .strike-badge,
+.roll .spare-badge {
+  width: 100%;
+  height: 100%;
+}
+
+.frame-score {
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 5px;
+  background-color: #5D2906; /* Dark brown */
+  border-radius: 4px;
+  color: #FFD700; /* Gold text */
+}
+
+/* Total score display styles */
+.total-score-display {
+  background-color: #A0522D; /* Sienna */
+  border-radius: 8px;
+  padding: 15px;
+  margin: 0 auto 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  max-width: 350px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 2px solid #FFD700; /* Gold border */
+}
+
+.total-score-ball {
+  flex-shrink: 0;
+}
+
+.total-score-label {
+  font-size: 20px;
+  font-weight: bold;
+  color: #FFF8DC; /* Cream text */
+}
+
+.total-score-value {
+  font-size: 26px;
+  font-weight: bold;
+  color: #FFD700; /* Gold */
+  padding: 5px 15px;
+  background-color: #5D2906; /* Dark brown */
+  border-radius: 6px;
+  min-width: 60px;
+  text-align: center;
+}
+
+.game-complete {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.game-complete h3 {
+  color: #FFD700; /* Gold */
+  font-size: 32px;
+  animation: pulse 1.5s infinite;
+  background-color: #A0522D; /* Sienna */
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 3px double #FF0000; /* Red border */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Ensure horizontal layout at all screen sizes */
+@media (max-width: 768px) {
+  .frames-container {
+    flex-direction: row;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 10px;
+  }
+  
+  .frame {
+    min-width: 80px;
+    width: 80px;
+    flex: 0 0 auto;
+  }
+}
+
+.turkey-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: turkey-fadein 0.3s;
+}
+
+.turkey-frame-explode {
+  background: #fffbe6;
+  border-radius: 24px;
+  box-shadow: 0 0 60px 10px #FFD700, 0 0 0 8px #8B4513 inset;
+  padding: 48px 48px 32px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: turkey-explode 0.7s cubic-bezier(.7,-0.2,.7,1.5);
+}
+
+.turkey-text {
+  font-size: 2.5rem;
+  color: #e67e22;
+  font-weight: bold;
+  margin-top: 18px;
+  text-shadow: 2px 2px 8px #fff, 0 0 10px #FFD700;
+  letter-spacing: 2px;
+  animation: turkey-laugh 1.2s infinite alternate;
+}
+
+@keyframes turkey-fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes turkey-explode {
+  0% { transform: scale(0.7) rotate(-10deg); opacity: 0.2; }
+  60% { transform: scale(1.15) rotate(3deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+@keyframes turkey-laugh {
+  0% { transform: scale(1) rotate(-2deg); }
+  100% { transform: scale(1.08) rotate(2deg); }
+}
+
+/* Frame 10 expansion animation */
+@keyframes expandFrame {
+  from { min-width: 100px; }
+  to { min-width: 150px; }
+}
+
+@keyframes spawnCircle {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  70% {
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Special styling for 10th frame */
+.frames-container > div:last-child.expanded {
+  animation: expandFrame 0.3s ease-out forwards;
+}
+
+.frames-container > div:last-child .roll:last-child.spawn {
+  animation: spawnCircle 0.4s ease-out;
+}
