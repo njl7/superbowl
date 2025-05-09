@@ -103,37 +103,32 @@ export class BowlingModel {
   
   // Calculate the score of the game based on the current rolls
   private static calculateScore(game: BowlingGame): BowlingGame {
-    // This is a deep clone to avoid affecting the original game state
     const newGame = JSON.parse(JSON.stringify(game));
     let totalScore = 0;
     
     for (let i = 0; i < 10; i++) {
       const frame = newGame.frames[i];
       
-      // Only calculate and display score when we have enough information
       if (this.canCalculateFrameScore(newGame, i)) {
-        // Strike
         if (frame.isStrike) {
-          // Get the next two rolls for strike bonus
           const bonus = this.getStrikeBonusRolls(newGame, i);
-          totalScore += 10 + bonus.reduce((sum, pins) => sum + pins, 0);
+          if (bonus.length === 2) {  // Only calculate if we have both bonus rolls
+            totalScore += 10 + bonus.reduce((sum: number, pins: number) => sum + pins, 0);
+          }
         }
-        // Spare
         else if (frame.isSpare) {
-          // Get the next roll for spare bonus
           const bonus = this.getSpareBonusRoll(newGame, i);
-          totalScore += 10 + bonus;
+          if (bonus !== null) {  // Only calculate if we have the bonus roll
+            totalScore += 10 + bonus;
+          }
         } 
-        // Open frame
         else {
-          totalScore += frame.rolls.reduce((sum, pins) => sum + pins, 0);
+          totalScore += frame.rolls.reduce((sum: number, pins: number) => sum + pins, 0);
         }
         
         frame.score = totalScore;
-        frame.displayScore = true; // Only display score when calculation is complete
+        frame.displayScore = true;
       } else {
-        // For frames where we can't calculate the final score yet,
-        // don't show potentially incorrect partial scores
         frame.displayScore = false;
       }
     }
@@ -225,7 +220,7 @@ export class BowlingModel {
   }
   
   // Format display string for a roll
-  static formatRoll(pins: number | undefined, index: number, isStrike: boolean, isSpare: boolean): string {
+  static formatRoll(pins: number | undefined, index: number, _isStrike: boolean, isSpare: boolean): string {
     if (pins === undefined) return '';
     if (index === 0 && pins === 10) return 'X';  // Strike on first roll
     if (index === 1 && isSpare) return '/';      // Spare
