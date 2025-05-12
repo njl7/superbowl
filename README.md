@@ -1,54 +1,95 @@
-# React + TypeScript + Vite
+# SuperBowl - Bowling Score Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, interactive bowling score tracking application built with React, TypeScript, and Vite. Keep track of your bowling games with a beautiful, responsive interface and real-time score calculations.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🎳 Real-time score tracking and calculation
+- 🎯 Support for strikes, spares, and open frames
+- 🏆 Special animations for strikes, spares, and turkeys
+- 👥 Player name customization
+- 🎮 Interactive pin controls for easy score input
+- 📱 Responsive design that works on all devices
+- 🌟 Beautiful animations and transitions
+- 🎨 Stylish bowling-themed UI
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd bowling
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Install dependencies:
+```bash
+npm install
+```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+3. Run the development server:
+```bash
+npm run dev
+```
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+4. Open your browser and navigate to `http://localhost:5173`
+
+## How to Play
+
+1. **Start a New Game**
+   - Enter your name in the player input field
+   - Click "New Game" to begin
+
+2. **Record Your Rolls**
+   - Use the numbered buttons (0-10) to record how many pins you knocked down
+   - The interface automatically handles strikes and spares
+   - The 10th frame allows bonus rolls for strikes and spares
+
+3. **Track Your Score**
+   - Watch your score update in real-time
+   - Special animations play for strikes, spares, and turkeys!
+   - View your running total and frame-by-frame breakdown
+
+## Technical Details
+
+### Built With
+- React 19
+- TypeScript
+- Vite 6
+- Custom SVG Animations
+- CSS3 with Modern Features
+
+### Project Structure
+```
+src/
+├── assets/          # Icons and static assets
+├── components/      # React components
+│   ├── admin/      # Game control components
+│   └── player/     # Scoreboard components
+├── models/         # Game logic and state management
+└── styles/         # CSS stylesheets
+```
+
+### Key Components
+
+- `BowlingModel`: Core game logic and score calculation
+- `GameContext`: Global game state management
+- `ScoreBoard`: Visual score display
+- `AdminPanel`: Game controls and pin input
+- `Layout`: Main application layout
+
+## Building for Production
+
+```bash
+npm run build
+```
+
+This will create a production-ready build in the `dist` directory.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is open source and available under the [MIT License].
 ```
