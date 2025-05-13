@@ -30,5 +30,34 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // More comprehensive mobile detection
+        const isMobile = () => {
+          return (
+            /Android/i.test(navigator.userAgent) ||
+            /webOS/i.test(navigator.userAgent) ||
+            /iPhone/i.test(navigator.userAgent) ||
+            /iPad/i.test(navigator.userAgent) ||
+            /iPod/i.test(navigator.userAgent) ||
+            /BlackBerry/i.test(navigator.userAgent) ||
+            /Windows Phone/i.test(navigator.userAgent) ||
+            (navigator.maxTouchPoints && navigator.maxTouchPoints > 2 && /MacIntel/.test(navigator.platform))
+          );
+        };
+
+        if (isMobile()) {
+          const viewport = document.querySelector('meta[name="viewport"]');
+          if (viewport) {
+            viewport.setAttribute('content', 'width=1024, initial-scale=1.0, maximum-scale=1.0');
+            // Force a reflow to ensure the viewport change takes effect
+            document.body.style.opacity = 0.99;
+            setTimeout(() => {
+              document.body.style.opacity = 1;
+            }, 10);
+          }
+        }
+      });
+    </script>
   </body>
 </html>
